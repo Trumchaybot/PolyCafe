@@ -4,35 +4,66 @@
  */
 package poly.cafe.ui.component;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import poly.cafe.dao.LuongDAO;
-import poly.cafe.dao.ThongTinNVDAO;
-import poly.cafe.dao.UserDAO;
-import poly.cafe.dao.impl.LuongDAOImpl;
-import poly.cafe.dao.impl.ThongTinNVDAOImpl;
-import poly.cafe.dao.impl.UserDAOImpl;
-import poly.cafe.entity.Luong;
+import javax.swing.table.JTableHeader;
+import poly.cafe.dao.impl.SalaryDAOImpl;
+import poly.cafe.dao.impl.EmployeeInfoDAOImpl;
+import poly.cafe.entity.Salary;
 import poly.cafe.ui.component.controller.QuanLyChamLuongController;
 import poly.cafe.util.XJdbc;
+import poly.cafe.dao.EmployeeInfoDAO;
+import poly.cafe.dao.SalaryDAO;
 
 /**
  *
  * @author admin
  */
 public class QuanlyChamLuong extends javax.swing.JPanel implements QuanLyChamLuongController{
-LuongDAO dao = new LuongDAOImpl();
+SalaryDAO dao = new SalaryDAOImpl();
     /**
      * Creates new form QLLJdialog
      */
     public QuanlyChamLuong() {
         initComponents();
         open();
+        this.Front();
     }
 
+    public void Front(){
+        jPanel1.setBackground(new Color(255,255,200));
+        jButton1.setBackground(new Color(255,255,230));
+        cboNam.setBackground(new Color(255,255,230));
+        cboThang.setBackground(new Color(255,255,230));
+        cboUserName.setBackground(new Color(255,255,230));
+        jScrollPane2.getViewport().setBackground(new Color(255, 255, 230));
+        tblLuong.setSelectionBackground(new Color(255, 255, 230)); // cùng màu nền bạn set
+tblLuong.setSelectionForeground(Color.BLACK);   
+        JTableHeader header = tblLuong.getTableHeader();
+header.setDefaultRenderer(new DefaultTableCellRenderer() {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+
+        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        c.setBackground(new Color(255, 255, 230)); // Màu be nhạt
+        c.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Font đậm
+        setHorizontalAlignment(CENTER);            // Canh giữa chữ
+
+        return c;
+    }
+});
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +76,7 @@ LuongDAO dao = new LuongDAOImpl();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblLuong = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -74,20 +106,20 @@ LuongDAO dao = new LuongDAOImpl();
 
         tblLuong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "UserName", "Tháng", "Năm", "Tổng giờ làm", "Tổng sản phẩm", "Tổng lương"
+                "ID", "UserName", "Tháng", "Năm", "Tổng giờ làm", "Tổng sản phẩm", "Tổng lương", "Ngày tất toán"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -111,9 +143,20 @@ LuongDAO dao = new LuongDAOImpl();
 
         jLabel5.setText("Họ tên");
 
+        txtHoTen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHoTenActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Tháng");
 
         cboThang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "All" }));
+        cboThang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboThangActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Năm");
 
@@ -126,63 +169,88 @@ LuongDAO dao = new LuongDAOImpl();
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1025, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(69, 69, 69)
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cboUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(34, 34, 34)
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(26, 26, 26)
+                            .addComponent(jButton1)))
+                    .addContainerGap()))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 561, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(13, 13, 13)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(cboUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)
+                        .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
+                        .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)
+                        .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1))
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cboUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cboUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboUserNameActionPerformed
         // TODO add your handling code here:
-        this.fillHoTen();
+//        this.fillHoTen();
     }//GEN-LAST:event_cboUserNameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
          selectAll(cboUserName, cboThang, cboNam);
-        fillHoTen();
+//        fillHoTen();
         fillToTable();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cboThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboThangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboThangActionPerformed
+
+    private void txtHoTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoTenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHoTenActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -195,6 +263,7 @@ LuongDAO dao = new LuongDAOImpl();
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
@@ -225,48 +294,54 @@ public void open() {
             userName = null;
         }
 
-        List<Luong> list = dao.findByCondition(userName, thang, nam);
-        for (Luong l : list) {
+        List<Salary> list = dao.findByCondition(userName, thang, nam);
+        for (Salary l : list) {
     model.addRow(new Object[]{
-        l.getID(),
+        l.getId(),
         l.getUserName(),
-        l.getThang(),
-        l.getNam(),
-        l.getTongGioLam(),
-        l.getTongSanPham(),
-        l.getTong_luong()
+        l.getMonth(),
+        l.getYear(),
+        l.getTotalHour(),
+        l.getTotalProduct(),
+        l.getBonus(),
+        l.getTotalSalary()
     });
 }
     }
 
+
     private void fillUserName() {
-        UserDAO userDAO = new UserDAOImpl();
-        List<String> userNames = userDAO.getAllUserNames();
         cboUserName.removeAllItems();
         cboUserName.addItem("All");
-        for (String userName : userNames) {
-            cboUserName.addItem(userName);
+        String sql = "SELECT DISTINCT UserName FROM Salary ORDER BY UserName";
+        try (ResultSet rs = XJdbc.executeQuery(sql)) {
+            while (rs.next()) {
+                cboUserName.addItem(String.valueOf(rs.getString("UserName")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     private void fillHoTen() {
-        String selectedUser = (String) cboUserName.getSelectedItem();
-        if (selectedUser != null && !selectedUser.equals("All")) {
-            ThongTinNVDAO thongTinNVDAO = new ThongTinNVDAOImpl();
-            String hoTen = thongTinNVDAO.getHoTenByUserName(selectedUser);
-            txtHoTen.setText(hoTen);
-        } else {
-            txtHoTen.setText("");
-        }
+    String selectedUser = (String) cboUserName.getSelectedItem();
+    if (selectedUser != null && !"All".equals(selectedUser)) {
+        EmployeeInfoDAO thongTinNVDAO = new EmployeeInfoDAOImpl();
+        String hoTen = thongTinNVDAO.findFullNameByUserName(selectedUser);
+        txtHoTen.setText(hoTen != null ? hoTen : "Không tìm thấy");
+    } else {
+        txtHoTen.setText("");
     }
+}
+
 
     private void fillThang() {
         cboThang.removeAllItems();
         cboThang.addItem("All");
-        String sql = "SELECT DISTINCT Thang FROM Luong ORDER BY Thang";
+        String sql = "SELECT DISTINCT month FROM Salary ORDER BY month";
         try (ResultSet rs = XJdbc.executeQuery(sql)) {
             while (rs.next()) {
-                cboThang.addItem(String.valueOf(rs.getInt("Thang")));
+                cboThang.addItem(String.valueOf(rs.getInt("month")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -276,10 +351,10 @@ public void open() {
     private void fillNam() {
         cboNam.removeAllItems();
         cboNam.addItem("All");
-        String sql = "SELECT DISTINCT Nam FROM Luong ORDER BY Nam";
+        String sql = "SELECT DISTINCT year FROM Salary ORDER BY year";
         try (ResultSet rs = XJdbc.executeQuery(sql)) {
             while (rs.next()) {
-                cboNam.addItem(String.valueOf(rs.getInt("Nam")));
+                cboNam.addItem(String.valueOf(rs.getInt("year")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -294,7 +369,6 @@ public void open() {
     
     @Override
     public void selectTimeRange() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     private void addComboBoxListeners() {
     cboUserName.addActionListener(e -> {
@@ -305,5 +379,4 @@ public void open() {
     cboThang.addActionListener(e -> fillToTable()); // chỉ load table thôi
     cboNam.addActionListener(e -> fillToTable());   // chỉ load table thôi
 }
-
 }

@@ -11,7 +11,7 @@ package poly.cafe.ui.component.controller;
 public interface ThongKeDoanhThuController {
     void open();
     void fillTableTongThu();
-    void fillTableTongsChi();
+    void fillTableTongChi();
     void checkAll(); // Tích chọn tất cả các hàng trên bảng
     void uncheckAll(); // Bỏ tích chọn tất cả các hàng trên bảng
     void deleteCheckedItems();

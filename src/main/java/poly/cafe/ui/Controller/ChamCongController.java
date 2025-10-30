@@ -1,6 +1,6 @@
     package poly.cafe.ui.Controller;
 
-import poly.cafe.entity.ChamCong;
+import poly.cafe.entity.Attendance;
 
 public interface ChamCongController {
     
@@ -9,6 +9,6 @@ public interface ChamCongController {
 
     void vaoCa();
     void raCa();
-    void fill(ChamCong chamCong);
+    void fill(Attendance chamCong);
     void open();
 }

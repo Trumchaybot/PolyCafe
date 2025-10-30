@@ -4,16 +4,23 @@
  */
 package poly.cafe.ui.component;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JTable;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import poly.cafe.dao.TuyenDungDAO;
-import poly.cafe.dao.UngTuyenDAO;
-import poly.cafe.dao.impl.TuyenDungDAOImpl;
-import poly.cafe.dao.impl.UngTuyenDAOImpl;
-import poly.cafe.entity.TuyenDung;
-import poly.cafe.entity.UngTuyen;
+import javax.swing.table.JTableHeader;
+import poly.cafe.dao.impl.RecruitmentDAOImpl;
+import poly.cafe.dao.impl.ApplicationsDAOImpl;
+import poly.cafe.entity.Recruitment;
+import poly.cafe.entity.Applications;
 import poly.cafe.ui.component.controller.QuanLyTuyenDungController;
+import poly.cafe.dao.ApplicationsDAO;
+import poly.cafe.dao.RecruitmentDAO;
 
 /**
  *
@@ -21,8 +28,8 @@ import poly.cafe.ui.component.controller.QuanLyTuyenDungController;
  */
 public class QuanLyTuyenDung extends javax.swing.JPanel implements QuanLyTuyenDungController {
 
-    TuyenDungDAO daotd = new TuyenDungDAOImpl();
-    UngTuyenDAO daout = new UngTuyenDAOImpl();
+    RecruitmentDAO daotd = new RecruitmentDAOImpl();
+    ApplicationsDAO daout = new ApplicationsDAOImpl();
 
     /**
      * Creates new form QLTDJdialog
@@ -30,8 +37,53 @@ public class QuanLyTuyenDung extends javax.swing.JPanel implements QuanLyTuyenDu
     public QuanLyTuyenDung() {
         initComponents();
         this.open();
+        this.Front();
     }
 
+    public void Front(){
+        jPanel1.setBackground(new Color(255,255,200));
+        jButton1.setBackground(new Color(255,255,230));
+        jTabbedPane1.setBackground(new Color(255,255,230));
+        jButton4.setBackground(new Color(255,255,230));
+        jButton5.setBackground(new Color(255,255,230));
+        jButton6.setBackground(new Color(255,255,230));
+        jScrollPane2.getViewport().setBackground(new Color(255, 255, 230));
+        jScrollPane1.getViewport().setBackground(new Color(255, 255, 230));
+        tblTuyenDung.setSelectionBackground(new Color(255, 255, 230)); // cùng màu nền bạn set
+tblTuyenDung.setSelectionForeground(Color.BLACK);   
+        JTableHeader header = tblTuyenDung.getTableHeader();
+header.setDefaultRenderer(new DefaultTableCellRenderer() {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+
+        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        c.setBackground(new Color(255, 255, 230)); // Màu be nhạt
+        c.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Font đậm
+        setHorizontalAlignment(CENTER);            // Canh giữa chữ
+
+        return c;
+    }
+});
+tblUngTuyen.setSelectionBackground(new Color(255, 255, 230)); // cùng màu nền bạn set
+tblUngTuyen.setSelectionForeground(Color.BLACK);   
+        JTableHeader headerr = tblUngTuyen.getTableHeader();
+headerr.setDefaultRenderer(new DefaultTableCellRenderer() {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+
+        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        c.setBackground(new Color(255, 255, 230)); // Màu be nhạt
+        c.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Font đậm
+        setHorizontalAlignment(CENTER);            // Canh giữa chữ
+
+        return c;
+    }
+});
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -249,23 +301,23 @@ public class QuanLyTuyenDung extends javax.swing.JPanel implements QuanLyTuyenDu
 
     @Override
     public void fillTableTuyenDung() {
-        DefaultTableModel model = (DefaultTableModel) tblTuyenDung.getModel();
-        model.setRowCount(0);
-        List<TuyenDung> list = daotd.findAll();
-        for (TuyenDung td : list) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            model.addRow(new Object[]{
-                td.getID(),
-                td.getVi_tri(),
-                td.getMo_ta(),
-                td.getYeu_cau(),
-                td.getSo_luong(),
-                sdf.format(td.getNgay_bat_dau()),
-                sdf.format(td.getNgay_ket_thuc()),
-                td.getTrang_thai(),
-                td.getUserName()
-            });
-        }
+//        DefaultTableModel model = (DefaultTableModel) tblTuyenDung.getModel();
+//        model.setRowCount(0);
+//        List<TuyenDung> list = daotd.findAll();
+//        for (TuyenDung td : list) {
+//            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//            model.addRow(new Object[]{
+//                td.getID(),
+//                td.getVi_tri(),
+//                td.getMo_ta(),
+//                td.getYeu_cau(),
+//                td.getSo_luong(),
+//                sdf.format(td.getNgay_bat_dau()),
+//                sdf.format(td.getNgay_ket_thuc()),
+//                td.getTrang_thai(),
+//                td.getUserName()
+//            });
+//        }
     }
 
     @Override
@@ -293,20 +345,20 @@ public void fillTableUngTuyen() {
     DefaultTableModel model = (DefaultTableModel) tblUngTuyen.getModel();
     model.setRowCount(0);
 
-    List<UngTuyen> list = daout.findAll();
+    List<Applications> list = daout.findAll();
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-    for (UngTuyen ut : list) {
+    for (Applications ut : list) {
         model.addRow(new Object[]{
             ut.getId(),
-            ut.getTuyenDungId(),
-            ut.getHoTen(),
-            sdf.format(ut.getNgaySinh()),
-            ut.getSdt(),
+            ut.getRecruitmentId(),
+            ut.getFullName(),
+            sdf.format(ut.getBirthDate()),
+            ut.getPhoneNumber(),
             ut.getEmail(),
-            ut.getViTriUngTuyen(),
-            sdf.format(ut.getNgayUngTuyen()),
-            ut.getTrangThai()
+            ut.getAppliedPosition(),
+            sdf.format(ut.getApplicationDate()),
+            ut.getStatus()
         });
     }
 }

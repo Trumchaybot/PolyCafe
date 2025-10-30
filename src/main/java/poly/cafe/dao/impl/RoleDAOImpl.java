@@ -1,58 +1,60 @@
 package poly.cafe.dao.impl;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import poly.cafe.dao.RoleDAO;
 import poly.cafe.entity.Role;
 import poly.cafe.util.XJdbc;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
 public class RoleDAOImpl implements RoleDAO {
 
-    private final String insertSql = "INSERT INTO role (role_ID, role) VALUES (?, ?)";
-    private final String updateSql = "UPDATE role SET role = ? WHERE role_ID = ?";
-    private final String deleteSql = "DELETE FROM role WHERE role_ID = ?";
-    private final String findByIdSql = "SELECT * FROM role WHERE role_ID = ?";
-    private final String findAllSql = "SELECT * FROM role";
+    final String INSERT_SQL = "INSERT INTO Role (role, role_name, hourly_salary) VALUES (?, ?, ?)";
+    final String UPDATE_SQL = "UPDATE Role SET role = ?, role_name = ?, hourly_salary = ? WHERE role_id = ?";
+    final String DELETE_SQL = "DELETE FROM Role WHERE role_id = ?";
+    final String SELECT_ALL_SQL = "SELECT * FROM Role";
+    final String SELECT_BY_ID_SQL = "SELECT * FROM Role WHERE role_id = ?";
 
     @Override
-    public Role create(Role role) {
-        XJdbc.executeUpdate(insertSql, role.getRoleId(), role.getRole());
-        return role;
+    public Role create(Role entity) {
+        XJdbc.executeUpdate(INSERT_SQL, entity.getRole(), entity.getRoleName(), entity.getHourlySalary());
+        return entity;
     }
 
     @Override
-    public void update(Role role) {
-        XJdbc.executeUpdate(updateSql, role.getRole(), role.getRoleId());
+    public void update(Role entity) {
+        XJdbc.executeUpdate(UPDATE_SQL, entity.getRole(), entity.getRoleName(), entity.getHourlySalary(), entity.getRoleId());
     }
 
     @Override
-    public void deleteById(int id) {
-        XJdbc.executeUpdate(deleteSql, id);
-    }
-
-    @Override
-    public Role findById(int id) {
-        try (ResultSet rs = XJdbc.executeQuery(findByIdSql, id)) {
-            if (rs.next()) {
-                return new Role(rs.getInt("role_ID"), rs.getString("role"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public void deleteById(Integer id) {
+        XJdbc.executeUpdate(DELETE_SQL, id);
     }
 
     @Override
     public List<Role> findAll() {
+        return selectBySql(SELECT_ALL_SQL);
+    }
+
+    @Override
+    public Role findById(Integer id) {
+        List<Role> list = selectBySql(SELECT_BY_ID_SQL, id);
+        return list.isEmpty() ? null : list.get(0);
+    }
+
+    private List<Role> selectBySql(String sql, Object... args) {
         List<Role> list = new ArrayList<>();
-        try (ResultSet rs = XJdbc.executeQuery(findAllSql)) {
+        try (ResultSet rs = XJdbc.executeQuery(sql, args)) {
             while (rs.next()) {
-                list.add(new Role(rs.getInt("role_ID"), rs.getString("role")));
+                Role r = new Role();
+                r.setRoleId(rs.getInt("role_id"));
+                r.setRole(rs.getString("role"));
+                r.setRoleName(rs.getString("role_name"));
+                r.setHourlySalary(rs.getFloat("hourly_salary"));
+                list.add(r);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return list;
     }

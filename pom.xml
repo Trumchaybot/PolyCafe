@@ -15,22 +15,48 @@
     </properties>
 
     <dependencies>
+        <!-- SQL Server JDBC -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>12.8.1.jre8</version>
         </dependency>
+
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.34</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- NetBeans AbsoluteLayout -->
         <dependency>
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE230</version>
         </dependency>
+
+        <!-- JavaMail (API gửi email) -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
+        <!-- Java Activation (Xử lý file đính kèm, DataHandler) -->
+        <dependency>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>javax.activation</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
+<dependency>
+    <groupId>com.toedter</groupId>
+    <artifactId>jcalendar</artifactId>
+    <version>1.4</version>
+</dependency>
     </dependencies>
 
     <build>
@@ -44,6 +70,8 @@
                     <mainClass>${exec.mainClass}</mainClass>
                 </configuration>
             </plugin>
+
+            <!-- Plugin tạo file jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -72,10 +100,12 @@
                     </annotationProcessorPaths>
                     <compilerArgs>
                         <arg>-Xlint:unchecked</arg>
-                        <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg> <!-- nếu sau này dùng MapStruct -->
+                        <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
+
+            <!-- Plugin build jar kèm dependencies -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>

@@ -4,32 +4,110 @@
  */
 package poly.cafe.ui.component;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
 import java.util.List;
+import javax.swing.JTable;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import poly.cafe.dao.NguyenVatLieuDAO;
-import poly.cafe.dao.impl.NguyenVatLieuDAOImpl;
-import poly.cafe.entity.NguyenVatLieu;
+import javax.swing.table.JTableHeader;
+import poly.cafe.dao.impl.MaterialsDAOImpl;
+import poly.cafe.entity.Materials;
 import poly.cafe.ui.component.controller.QuanLyVatLieuController;
+import poly.cafe.ui.manager.KhoManagerJDialog;
+import poly.cafe.dao.MaterialsDAO;
 
 /**
  *
  * @author admin
  */
 public class QuanLyVatLieu extends javax.swing.JPanel implements QuanLyVatLieuController{
-    NguyenVatLieuDAO dao = new NguyenVatLieuDAOImpl();
+    MaterialsDAO dao = new MaterialsDAOImpl();
+    private Frame owner;
     /**
      * Creates new form QLVL
      */
     public QuanLyVatLieu() {
         initComponents();
         open();
+        this.Front();
     }
+    public QuanLyVatLieu(Frame owner) {
+    this.owner = owner;
+    initComponents();
+    open();
+}
 private void setCheckedAll(boolean b) {
         DefaultTableModel model = (DefaultTableModel) tblVatlieu.getModel();
         for (int i = 0; i < model.getRowCount(); i++) {
             model.setValueAt(b, i, 5);
         }
     }
+
+public void Front(){
+    jPanel1.setBackground(new Color(255,255,200));
+    jPanel2.setBackground(new Color(255,255,200));
+    jPanel3.setBackground(new Color(255,255,200));
+        btncheckAll.setBackground(new Color(255,255,230));
+        btnuncheckAll.setBackground(new Color(255,255,230));
+        btndeleteCheckedItems.setBackground(new Color(255,255,230));
+        btncheckAll1.setBackground(new Color(255,255,230));
+        btnuncheckAll1.setBackground(new Color(255,255,230));
+        btndeleteCheckedItems1.setBackground(new Color(255,255,230));
+        jScrollPane1.getViewport().setBackground(new Color(255, 255, 230));
+        jScrollPane2.getViewport().setBackground(new Color(255, 255, 230));
+        tblVatlieu.setSelectionBackground(new Color(255, 255, 230)); // cùng màu nền bạn set
+        tblVatlieu1.setSelectionBackground(new Color(255, 255, 230));
+tblVatlieu.setSelectionForeground(Color.BLACK);   
+        JTableHeader header = tblVatlieu.getTableHeader();
+header.setDefaultRenderer(new DefaultTableCellRenderer() {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+
+        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        c.setBackground(new Color(255, 255, 230)); // Màu be nhạt
+        c.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Font đậm
+        setHorizontalAlignment(CENTER);            // Canh giữa chữ
+
+        return c;
+    }
+});
+tblVatlieu1.setSelectionBackground(new Color(255, 255, 230)); // cùng màu nền bạn set
+tblVatlieu1.setSelectionForeground(Color.BLACK);   
+        JTableHeader headerr = tblVatlieu1.getTableHeader();
+headerr.setDefaultRenderer(new DefaultTableCellRenderer() {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+
+        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        c.setBackground(new Color(255, 255, 230)); // Màu be nhạt
+        c.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Font đậm
+        setHorizontalAlignment(CENTER);            // Canh giữa chữ
+
+        return c;
+    }
+});
+jTabbedPane1.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI() {
+    @Override
+    protected void paintTabBackground(Graphics g, int tabPlacement,
+                                      int tabIndex, int x, int y, int w, int h, boolean isSelected) {
+        if (isSelected) {
+            g.setColor(new Color(255, 255, 200)); // màu tab được chọn
+        } else {
+            g.setColor(new Color(255, 255, 230)); // màu tab chưa chọn
+        }
+        g.fillRect(x, y, w, h);
+    }
+});
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,12 +117,22 @@ private void setCheckedAll(boolean b) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVatlieu = new javax.swing.JTable();
         btncheckAll = new javax.swing.JButton();
         btnuncheckAll = new javax.swing.JButton();
         btndeleteCheckedItems = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblVatlieu1 = new javax.swing.JTable();
+        btncheckAll1 = new javax.swing.JButton();
+        btnuncheckAll1 = new javax.swing.JButton();
+        btndeleteCheckedItems1 = new javax.swing.JButton();
+        btnAdd1 = new javax.swing.JButton();
 
         tblVatlieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,35 +218,199 @@ private void setCheckedAll(boolean b) {
         });
 
         btnAdd.setText("Thêm vật liệu");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1091, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(480, Short.MAX_VALUE)
+                    .addComponent(btncheckAll)
+                    .addGap(18, 18, 18)
+                    .addComponent(btnuncheckAll)
+                    .addGap(18, 18, 18)
+                    .addComponent(btndeleteCheckedItems)
+                    .addGap(18, 18, 18)
+                    .addComponent(btnAdd)
+                    .addGap(125, 125, 125))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1034, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 519, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btncheckAll)
+                        .addComponent(btnuncheckAll)
+                        .addComponent(btndeleteCheckedItems)
+                        .addComponent(btnAdd))
+                    .addContainerGap()))
+        );
+
+        jTabbedPane1.addTab("kho vật liệu", jPanel1);
+
+        tblVatlieu1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Tên sản phẩm", "Đơn vị", "Đơn giá", "Số Lượng tồn", ""
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblVatlieu1);
+
+        btncheckAll1.setText("Chọn tất cả");
+        btncheckAll1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncheckAll1ActionPerformed(evt);
+            }
+        });
+
+        btnuncheckAll1.setText("Bỏ mục đã chọn");
+        btnuncheckAll1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnuncheckAll1ActionPerformed(evt);
+            }
+        });
+
+        btndeleteCheckedItems1.setText("Xóa mục đã chọn");
+        btndeleteCheckedItems1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeleteCheckedItems1ActionPerformed(evt);
+            }
+        });
+
+        btnAdd1.setText("Thêm vật liệu");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1091, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 474, Short.MAX_VALUE)
+                            .addComponent(btncheckAll1)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnuncheckAll1)
+                            .addGap(18, 18, 18)
+                            .addComponent(btndeleteCheckedItems1)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnAdd1)
+                            .addGap(119, 119, 119)))
+                    .addContainerGap()))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 519, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btncheckAll1)
+                        .addComponent(btnuncheckAll1)
+                        .addComponent(btndeleteCheckedItems1)
+                        .addComponent(btnAdd1))
+                    .addContainerGap()))
+        );
+
+        jTabbedPane1.addTab("Kho sản phẩm", jPanel2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1091, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 976, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 554, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(368, Short.MAX_VALUE)
-                .addComponent(btncheckAll)
-                .addGap(18, 18, 18)
-                .addComponent(btnuncheckAll)
-                .addGap(18, 18, 18)
-                .addComponent(btndeleteCheckedItems)
-                .addGap(18, 18, 18)
-                .addComponent(btnAdd)
-                .addGap(119, 119, 119))
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btncheckAll)
-                    .addComponent(btnuncheckAll)
-                    .addComponent(btndeleteCheckedItems)
-                    .addComponent(btnAdd))
-                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -177,14 +429,42 @@ private void setCheckedAll(boolean b) {
         this.deleteCheckedItems();
     }//GEN-LAST:event_btndeleteCheckedItemsActionPerformed
 
+    private void btncheckAll1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncheckAll1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btncheckAll1ActionPerformed
+
+    private void btnuncheckAll1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnuncheckAll1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnuncheckAll1ActionPerformed
+
+    private void btndeleteCheckedItems1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteCheckedItems1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btndeleteCheckedItems1ActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        KhoManagerJDialog dialog = new KhoManagerJDialog(owner, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnAddActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btncheckAll;
+    private javax.swing.JButton btncheckAll1;
     private javax.swing.JButton btndeleteCheckedItems;
+    private javax.swing.JButton btndeleteCheckedItems1;
     private javax.swing.JButton btnuncheckAll;
+    private javax.swing.JButton btnuncheckAll1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblVatlieu;
+    private javax.swing.JTable tblVatlieu1;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -197,16 +477,16 @@ public void fillToTable() {
     DefaultTableModel model = (DefaultTableModel) tblVatlieu.getModel();
     model.setRowCount(0); // Xóa bảng cũ
 
-    NguyenVatLieuDAO dao = new NguyenVatLieuDAOImpl();
-    List<NguyenVatLieu> list = dao.findAll(); // Lấy danh sách nguyên vật liệu
+    MaterialsDAO dao = new MaterialsDAOImpl();
+    List<Materials> list = dao.findAll(); // Lấy danh sách nguyên vật liệu
 
-    for (NguyenVatLieu nvl : list) {
+    for (Materials nvl : list) {
         Object[] row = {
-            nvl.getVatLieuId(),
-            nvl.getTenVatLieu(),
-            nvl.getDonVi(),
-            nvl.getDonGia(),
-            nvl.getSoLuongTon()
+            nvl.getMaterialId(),
+            nvl.getMaterialName(),
+            nvl.getUnit(),
+            nvl.getUnitPrice(),
+            nvl.getQuantity()
         };
         model.addRow(row); // Thêm từng dòng vào bảng
     }

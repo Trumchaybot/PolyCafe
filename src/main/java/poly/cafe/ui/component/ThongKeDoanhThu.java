@@ -4,31 +4,102 @@
  */
 package poly.cafe.ui.component;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.sql.ResultSet;
 import java.util.List;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import poly.cafe.dao.TongChiDAO;
-import poly.cafe.dao.TongThuDAO;
-import poly.cafe.dao.impl.TongChiDAOImpl;
-import poly.cafe.dao.impl.TongThuDAOImpl;
-import poly.cafe.entity.TongChi;
-import poly.cafe.entity.TongThu;
+import javax.swing.table.JTableHeader;
+import poly.cafe.dao.impl.TotalExpensesDAOImpl;
+import poly.cafe.dao.impl.TotalRevenueDAOImpl;
+import poly.cafe.entity.TotalExpenses;
+import poly.cafe.entity.TotalRevenue;
 import poly.cafe.ui.component.controller.ThongKeDoanhThuController;
+import poly.cafe.util.XJdbc;
+import poly.cafe.dao.TotalExpensesDAO;
+import poly.cafe.dao.TotalRevenueDAO;
 
 /**
  *
  * @author admin
  */
 public class ThongKeDoanhThu extends javax.swing.JPanel implements ThongKeDoanhThuController{
-TongThuDAO daott = new TongThuDAOImpl();
-    TongChiDAO daotc = new TongChiDAOImpl();
+TotalRevenueDAO daott = new TotalRevenueDAOImpl();
+    TotalExpensesDAO daotc = new TotalExpensesDAOImpl();
     /**
      * Creates new form TKDTJdialog
      */
     public ThongKeDoanhThu() {
         initComponents();
         this.open();
+        this.Front();
     }
 
+    public void Front(){
+        jPanel1.setBackground(new Color(255,255,200));
+        jPanel2.setBackground(new Color(255,255,200));
+        jPanel3.setBackground(new Color(255,255,200));
+        jButton1.setBackground(new Color(255,255,200));
+        jButton2.setBackground(new Color(255,255,200));
+        cboThangChi.setBackground(new Color(255, 255, 230));
+        cboNamChi.setBackground(new Color(255, 255, 230));
+        cboThangThu.setBackground(new Color(255, 255, 230));
+        cboNamThu.setBackground(new Color(255, 255, 230));
+        jScrollPane1.getViewport().setBackground(new Color(255, 255, 230));
+        jScrollPane2.getViewport().setBackground(new Color(255, 255, 230));
+        tblTongChi.setSelectionBackground(new Color(255, 255, 230)); // cùng màu nền bạn set
+tblTongChi.setSelectionForeground(Color.BLACK);   
+        JTableHeader header = tblTongChi.getTableHeader();
+header.setDefaultRenderer(new DefaultTableCellRenderer() {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+
+        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        c.setBackground(new Color(255, 255, 230)); // Màu be nhạt
+        c.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Font đậm
+        setHorizontalAlignment(CENTER);            // Canh giữa chữ
+
+        return c;
+    }
+});
+tblTongThu.setSelectionBackground(new Color(255, 255, 230)); // cùng màu nền bạn set
+tblTongThu.setSelectionForeground(Color.BLACK);   
+        JTableHeader headerr = tblTongThu.getTableHeader();
+headerr.setDefaultRenderer(new DefaultTableCellRenderer() {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+
+        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        c.setBackground(new Color(255, 255, 230)); // Màu be nhạt
+        c.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Font đậm
+        setHorizontalAlignment(CENTER);            // Canh giữa chữ
+
+        return c;
+    }
+});
+jTabbedPane1.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI() {
+    @Override
+    protected void paintTabBackground(Graphics g, int tabPlacement,
+                                      int tabIndex, int x, int y, int w, int h, boolean isSelected) {
+        if (isSelected) {
+            g.setColor(new Color(255, 255, 200)); // màu tab được chọn
+        } else {
+            g.setColor(new Color(255, 255, 230)); // màu tab chưa chọn
+        }
+        g.fillRect(x, y, w, h);
+    }
+});
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,22 +109,23 @@ TongThuDAO daott = new TongThuDAOImpl();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTongThu = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cboThangThu = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cboNamThu = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTongChi = new javax.swing.JTable();
         Jlabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cboThangChi = new javax.swing.JComboBox<>();
+        cboNamChi = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
         tblTongThu.setModel(new javax.swing.table.DefaultTableModel(
@@ -86,34 +158,40 @@ TongThuDAO daott = new TongThuDAOImpl();
 
         jLabel3.setText("Tháng");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboThangThu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setText("Năm");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboNamThu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton2.setText("All");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboThangThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboNamThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,9 +199,9 @@ TongThuDAO daott = new TongThuDAOImpl();
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboThangThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboNamThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
@@ -164,32 +242,38 @@ TongThuDAO daott = new TongThuDAOImpl();
 
         jLabel2.setText("Năm");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboThangChi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboNamChi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("All");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(273, 273, 273)
-                .addComponent(Jlabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(273, 273, 273)
+                        .addComponent(Jlabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboThangChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboNamChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,9 +281,9 @@ TongThuDAO daott = new TongThuDAOImpl();
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Jlabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboThangChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboNamChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE))
@@ -207,35 +291,66 @@ TongThuDAO daott = new TongThuDAOImpl();
 
         jTabbedPane1.addTab("Tổng chi", jPanel2);
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1084, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jTabbedPane1)
+                    .addContainerGap()))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 618, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jTabbedPane1)
+                    .addContainerGap()))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        selectAll(cboThangChi, cboNamChi);
+        fillTableTongChi();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        selectAll(cboThangThu, cboNamThu);
+        fillTableTongChi();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jlabel1;
+    private javax.swing.JComboBox<String> cboNamChi;
+    private javax.swing.JComboBox<String> cboNamThu;
+    private javax.swing.JComboBox<String> cboThangChi;
+    private javax.swing.JComboBox<String> cboThangThu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -245,8 +360,14 @@ TongThuDAO daott = new TongThuDAOImpl();
 
     @Override
     public void open() {
+        this.fillNamTongChi();
+        this.fillNamTongThu();
+        this.fillThangTongThu();
+        this.fillThangTongChi();
+        this.addComboBoxChiListeners();
+        this.addComboBoxThuListeners();
         this.fillTableTongThu();
-        this.fillTableTongsChi();
+        this.fillTableTongChi();
     }
 
     @Override
@@ -273,38 +394,116 @@ TongThuDAO daott = new TongThuDAOImpl();
     public void fillTableTongThu() {
     DefaultTableModel model = (DefaultTableModel) tblTongThu.getModel();
     model.setRowCount(0);
-    
-    List<TongThu> list = daott.findAll();
 
-    for (TongThu tt : list) {
-        model.addRow(new Object[]{
-            tt.getID(),
-            tt.getThang(),
-            tt.getNam(),
-            tt.getTienDonHang(),
-            tt.getTienXuatKho(),
-            tt.getTongDoanhThu()
-        });
+    Integer thang = cboThangThu.getSelectedItem().toString().equals("All")
+            ? null : Integer.valueOf(cboThangThu.getSelectedItem().toString());
+    Integer nam = cboNamThu.getSelectedItem().toString().equals("All")
+            ? null : Integer.valueOf(cboNamThu.getSelectedItem().toString());
+
+    try {
+        List<TotalRevenue> list = daott.findByCondition(thang, nam);
+        for (TotalRevenue tt : list) {
+            model.addRow(new Object[]{
+                tt.getId(),
+                tt.getMonth(),
+                tt.getYear(),
+                tt.getOrderIncome(),
+                tt.getExportIncome(),
+                tt.getTotalIncome()
+            });
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
 }
 
     @Override
-    public void fillTableTongsChi() {
+    public void fillTableTongChi() {
     DefaultTableModel model = (DefaultTableModel) tblTongChi.getModel();
     model.setRowCount(0);
 
-    List<TongChi> list = daotc.findAll();
+    Integer thang = cboThangChi.getSelectedItem().toString().equals("All")
+            ? null : Integer.valueOf(cboThangChi.getSelectedItem().toString());
+    Integer nam = cboNamChi.getSelectedItem().toString().equals("All")
+            ? null : Integer.valueOf(cboNamChi.getSelectedItem().toString());
 
-    for (TongChi tc : list) {
-        model.addRow(new Object[]{
-            tc.getID(),
-            tc.getThang(),
-            tc.getNam(),
-            tc.getTienLuong(),
-            tc.getTienNhapKho(),
-            tc.getTongChiTieu()
-        });
+    try {
+        List<TotalExpenses> list = daotc.findByCondition(thang, nam);
+        for (TotalExpenses tc : list) {
+            model.addRow(new Object[]{
+                tc.getId(),
+                tc.getMonth(),
+                tc.getYear(),
+                tc.getImportExpense(),
+                tc.getSalaryExpense(),
+                tc.getTotalExpense()
+            });
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
 }
+private void fillThangTongThu() {
+        cboThangThu.removeAllItems();
+        cboThangThu.addItem("All");
+        String sql = "SELECT DISTINCT month FROM TotalRevenue ORDER BY month";
+        try (ResultSet rs = XJdbc.executeQuery(sql)) {
+            while (rs.next()) {
+                cboThangThu.addItem(String.valueOf(rs.getInt("month")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void fillNamTongThu() {
+        cboNamThu.removeAllItems();
+        cboNamThu.addItem("All");
+        String sql = "SELECT DISTINCT year FROM TotalRevenue ORDER BY year";
+        try (ResultSet rs = XJdbc.executeQuery(sql)) {
+            while (rs.next()) {
+                cboNamThu.addItem(String.valueOf(rs.getInt("year")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+private void fillThangTongChi() {
+        cboThangChi.removeAllItems();
+        cboThangChi.addItem("All");
+        String sql = "SELECT DISTINCT month FROM TotalExpenses ORDER BY month";
+        try (ResultSet rs = XJdbc.executeQuery(sql)) {
+            while (rs.next()) {
+                cboThangChi.addItem(String.valueOf(rs.getInt("month")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void fillNamTongChi() {
+        cboNamChi.removeAllItems();
+        cboNamChi.addItem("All");
+        String sql = "SELECT DISTINCT year FROM TotalExpenses ORDER BY year";
+        try (ResultSet rs = XJdbc.executeQuery(sql)) {
+            while (rs.next()) {
+                cboNamChi.addItem(String.valueOf(rs.getInt("year")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void selectAll(JComboBox... combos) {
+        for (JComboBox combo : combos) {
+            combo.setSelectedItem("All");
+        }
+    }
+    private void addComboBoxThuListeners() {
+    cboThangThu.addActionListener(e -> fillTableTongThu()); // chỉ load table thôi
+    cboNamThu.addActionListener(e -> fillTableTongThu());   // chỉ load table thôi
+}
+    private void addComboBoxChiListeners() {
+    cboThangChi.addActionListener(e -> fillTableTongChi()); // chỉ load table thôi
+    cboNamChi.addActionListener(e -> fillTableTongChi());   // chỉ load table thôi
+}
 }

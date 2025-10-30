@@ -4,12 +4,23 @@
  */
 package poly.cafe.ui.component;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Frame;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import poly.cafe.dao.ThongTinNVDAO;
-import poly.cafe.dao.impl.ThongTinNVDAOImpl;
-import poly.cafe.entity.ThongTinNV;
+import javax.swing.table.JTableHeader;
+import poly.cafe.dao.impl.EmployeeInfoDAOImpl;
+import poly.cafe.entity.Role;
+import poly.cafe.entity.EmployeeInfo;
 import poly.cafe.ui.component.controller.QuanLyNhanVienController;
+import poly.cafe.ui.manager.ThongTinNVManagerJDialog;
+import poly.cafe.dao.EmployeeInfoDAO;
 
 /**
  *
@@ -17,23 +28,54 @@ import poly.cafe.ui.component.controller.QuanLyNhanVienController;
  */
 public class QuanLyNhanVien extends javax.swing.JPanel implements QuanLyNhanVienController {
 
-    ThongTinNVDAO dao = new ThongTinNVDAOImpl();
-
+    EmployeeInfoDAO dao = new EmployeeInfoDAOImpl();
+private Frame owner;
     /**
      * Creates new form QLNSJdialog
      */
     public QuanLyNhanVien() {
         initComponents();
         open();
+        this.Front();
     }
+    public QuanLyNhanVien(Frame owner) {
+    this.owner = owner;
+    initComponents();
+    open();
+}
 
     private void setCheckedAll(boolean b) {
         DefaultTableModel model = (DefaultTableModel) tblNhanVien.getModel();
         for (int i = 0; i < model.getRowCount(); i++) {
-            model.setValueAt(b, i, 10);
+            model.setValueAt(b, i, 11);
         }
     }
 
+    public void Front(){
+        jPanel1.setBackground(new Color(255,255,200));
+        btnuncheckAll.setBackground(new Color(255,255,230));
+        btndeleteCheckedItems.setBackground(new Color(255,255,230));
+        jButton4.setBackground(new Color(255,255,230));
+        btncheckAll.setBackground(new Color(255,255,230));
+        jScrollPane1.getViewport().setBackground(new Color(255, 255, 230));
+        tblNhanVien.setSelectionBackground(new Color(255, 255, 230)); // cùng màu nền bạn set
+tblNhanVien.setSelectionForeground(Color.BLACK);   
+        JTableHeader header = tblNhanVien.getTableHeader();
+header.setDefaultRenderer(new DefaultTableCellRenderer() {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+
+        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        c.setBackground(new Color(255, 255, 230)); // Màu be nhạt
+        c.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Font đậm
+        setHorizontalAlignment(CENTER);            // Canh giữa chữ
+
+        return c;
+    }
+});
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,6 +85,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel implements QuanLyNhanVien
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblNhanVien = new javax.swing.JTable();
         btncheckAll = new javax.swing.JButton();
@@ -52,20 +95,20 @@ public class QuanLyNhanVien extends javax.swing.JPanel implements QuanLyNhanVien
 
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "UserName", "Họ tên", "Ngày sinh", "Địa chỉ", "Số điện thoại", "Email", "Ngày vào làm", "Chức vụ", "Hình ảnh", ""
+                "UserName", "PassWord", "Họ tên", "Giới tính", "Ngày sinh", "Địa chỉ", "Số điện thoại", "Email", "Chức vụ", "Hình ảnh", "Trạng thái", ""
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -74,6 +117,12 @@ public class QuanLyNhanVien extends javax.swing.JPanel implements QuanLyNhanVien
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblNhanVien.setToolTipText("");
+        tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNhanVienMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblNhanVien);
@@ -100,34 +149,59 @@ public class QuanLyNhanVien extends javax.swing.JPanel implements QuanLyNhanVien
         });
 
         jButton4.setText("Thêm nhân sự");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1027, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(445, 445, 445)
+                            .addComponent(btncheckAll)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnuncheckAll)
+                            .addGap(18, 18, 18)
+                            .addComponent(btndeleteCheckedItems)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)))
+                    .addContainerGap()))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 554, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(3, 3, 3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                    .addGap(28, 28, 28)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btncheckAll)
+                        .addComponent(btnuncheckAll)
+                        .addComponent(btndeleteCheckedItems)
+                        .addComponent(jButton4))
+                    .addGap(3, 3, 3)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(445, 445, 445)
-                .addComponent(btncheckAll)
-                .addGap(18, 18, 18)
-                .addComponent(btnuncheckAll)
-                .addGap(18, 18, 18)
-                .addComponent(btndeleteCheckedItems)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(92, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btncheckAll)
-                    .addComponent(btnuncheckAll)
-                    .addComponent(btndeleteCheckedItems)
-                    .addComponent(jButton4))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,12 +220,26 @@ public class QuanLyNhanVien extends javax.swing.JPanel implements QuanLyNhanVien
         this.deleteCheckedItems();
     }//GEN-LAST:event_btndeleteCheckedItemsActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+       ThongTinNVManagerJDialog dialog = new ThongTinNVManagerJDialog(owner, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
+        // TODO add your handling code here:
+         if (evt.getClickCount() == 2) {
+            this.edit();
+        }
+    }//GEN-LAST:event_tblNhanVienMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncheckAll;
     private javax.swing.JButton btndeleteCheckedItems;
     private javax.swing.JButton btnuncheckAll;
     private javax.swing.JButton jButton4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblNhanVien;
     // End of variables declaration//GEN-END:variables
@@ -163,28 +251,30 @@ public class QuanLyNhanVien extends javax.swing.JPanel implements QuanLyNhanVien
 
     @Override
     public void fillToTable() {
-        DefaultTableModel model = (DefaultTableModel) tblNhanVien.getModel();
-        model.setRowCount(0); // Xóa dữ liệu cũ trên bảng
+    DefaultTableModel model = (DefaultTableModel) tblNhanVien.getModel();
+    model.setRowCount(0); // Xóa dữ liệu cũ
 
-        ThongTinNVDAO dao = new ThongTinNVDAOImpl();
-        List<ThongTinNV> list = dao.findAll(); // Lấy danh sách NV từ DB
+    List<EmployeeInfo> list = dao.findAll();
 
-        for (ThongTinNV nv : list) {
-            Object[] row = {
-                nv.getId(),
-                nv.getUserName(),
-                nv.getHoTen(),
-                nv.getNgaySinh(),
-                nv.getDiaChi(),
-                nv.getSdt(),
-                nv.getEmail(),
-                nv.getNgayVaoLam(),
-                nv.getRoleId(),
-                nv.getPhoto()
-            };
-            model.addRow(row); // Thêm dòng vào bảng
-        }
+    for (EmployeeInfo nv : list) {
+        Object[] row = {
+            nv.getUserName(),
+            nv.getPassWord(),
+            nv.getFullName(),
+            nv.getGender(),
+            nv.getBirthDate(),
+            nv.getAddress(),
+            nv.getPhoneNumber(),
+            nv.getEmail(),  
+            nv.getRole().getRole(),
+            nv.getPhoto(),
+            nv.getStatus(),
+            
+        };
+        model.addRow(row);
     }
+}
+
 
     @Override
     public void checkAll() {
@@ -197,20 +287,45 @@ public class QuanLyNhanVien extends javax.swing.JPanel implements QuanLyNhanVien
     }
 
     @Override
-    public void deleteCheckedItems() {
-        DefaultTableModel model = (DefaultTableModel) tblNhanVien.getModel();
-        for (int i = model.getRowCount() - 1; i >= 0; i--) {
-            Boolean checked = (Boolean) model.getValueAt(i, 10);
-            if (checked != null && checked) {
-                Integer id = (Integer) model.getValueAt(i, 0);
-                dao.deleteById(id);
-                model.removeRow(i);
-            }
+public void deleteCheckedItems() {
+    DefaultTableModel model = (DefaultTableModel) tblNhanVien.getModel();
+    for (int i = model.getRowCount() - 1; i >= 0; i--) {
+        Boolean checked = (Boolean) model.getValueAt(i, 12); // Cột checkbox
+        if (checked != null && checked) {
+            String userName = (String) model.getValueAt(i, 0); // UserName là khóa chính
+            dao.deleteById(userName);
+            model.removeRow(i);
         }
     }
+}
+
 
     @Override
-    public void edit() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+public void edit() {
+    int selectedRow = tblNhanVien.getSelectedRow();
+    if (selectedRow < 0) {
+        JOptionPane.showMessageDialog(null, "Vui lòng chọn một nhân viên để chỉnh sửa.");
+        return;
     }
+
+    // Lấy UserName (khóa chính) từ bảng
+    String userName = (String) tblNhanVien.getValueAt(selectedRow, 0);
+
+    // Tìm nhân viên từ database
+    EmployeeInfo nv = dao.findById(userName);
+    if (nv == null) {
+        JOptionPane.showMessageDialog(null, "Không tìm thấy thông tin nhân viên!");
+        return;
+    }
+
+    // Mở JDialog và đổ dữ liệu vào
+    ThongTinNVManagerJDialog dialog = new ThongTinNVManagerJDialog(null, true);
+    dialog.setForm(nv); // Hàm setForm để set các giá trị vào textfield, combobox, radio...
+    dialog.setVisible(true);
+
+    // Sau khi đóng dialog có thể cập nhật lại bảng nếu có thay đổi
+    fillToTable();
+}
+
+
 }

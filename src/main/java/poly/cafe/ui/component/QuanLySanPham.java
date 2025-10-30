@@ -4,33 +4,75 @@
  */
 package poly.cafe.ui.component;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Frame;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import poly.cafe.dao.SanPhamDAO;
-import poly.cafe.dao.impl.SanPhamDAOImpl;
-import poly.cafe.entity.SanPham;
+import javax.swing.table.JTableHeader;
+import poly.cafe.dao.impl.ProductsDAOImpl;
+import poly.cafe.entity.Products;
 import poly.cafe.util.XDialog;
 import poly.cafe.ui.component.controller.QuanLySanPhamController;
+import poly.cafe.ui.manager.ProductsManagerJDialog;
+import poly.cafe.dao.ProductsDAO;
 
 /**
  *
  * @author admin
  */
 public class QuanLySanPham extends javax.swing.JPanel implements QuanLySanPhamController{
-    SanPhamDAO dao = new SanPhamDAOImpl();
+    ProductsDAO dao = new ProductsDAOImpl();
+    private Frame owner;
     /**
      * Creates new form QLSP
      */
     public QuanLySanPham() {
         initComponents();
         open();
+        this.Front();
     }
+    public QuanLySanPham(Frame owner) {
+    this.owner = owner;
+    initComponents();
+    open();
+}
 private void setCheckedAll(boolean b) {
         DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
         for (int i = 0; i < model.getRowCount(); i++) {
-            model.setValueAt(b, i, 4);
+            model.setValueAt(b, i, 7);
         }
     }
+public void Front(){
+    jPanel1.setBackground(new Color(255,255,200));
+        jButton1.setBackground(new Color(255,255,230));
+        btncheckAll.setBackground(new Color(255,255,230));
+        btndeleteCheckedItems.setBackground(new Color(255,255,230));
+        btnuncheckAll.setBackground(new Color(255,255,230));
+        jScrollPane1.getViewport().setBackground(new Color(255, 255, 230));
+        tblSanPham.setSelectionBackground(new Color(255, 255, 230)); // cùng màu nền bạn set
+tblSanPham.setSelectionForeground(Color.BLACK);   
+        JTableHeader header = tblSanPham.getTableHeader();
+header.setDefaultRenderer(new DefaultTableCellRenderer() {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+
+        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        c.setBackground(new Color(255, 255, 230)); // Màu be nhạt
+        c.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Font đậm
+        setHorizontalAlignment(CENTER);            // Canh giữa chữ
+
+        return c;
+    }
+});
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,6 +82,7 @@ private void setCheckedAll(boolean b) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
         btncheckAll = new javax.swing.JButton();
@@ -49,54 +92,54 @@ private void setCheckedAll(boolean b) {
 
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Tên sản phẩm", "Mô tả", "Giá tiền", ""
+                "ID", "Tên sản phẩm", "Mô tả", "Giá tiền", "Định mức", "Lương cơ bản", "Lương vượt định mức", "Số lượng", ""
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -105,6 +148,11 @@ private void setCheckedAll(boolean b) {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSanPhamMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblSanPham);
@@ -131,35 +179,54 @@ private void setCheckedAll(boolean b) {
         });
 
         jButton1.setText("Thêm sản phẩm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1035, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(423, Short.MAX_VALUE)
+                    .addComponent(btncheckAll)
+                    .addGap(18, 18, 18)
+                    .addComponent(btnuncheckAll)
+                    .addGap(18, 18, 18)
+                    .addComponent(btndeleteCheckedItems)
+                    .addGap(62, 62, 62)
+                    .addComponent(jButton1)
+                    .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 554, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btncheckAll)
+                        .addComponent(btnuncheckAll)
+                        .addComponent(btndeleteCheckedItems)
+                        .addComponent(jButton1))
+                    .addContainerGap()))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btncheckAll)
-                .addGap(18, 18, 18)
-                .addComponent(btnuncheckAll)
-                .addGap(18, 18, 18)
-                .addComponent(btndeleteCheckedItems)
-                .addGap(62, 62, 62)
-                .addComponent(jButton1)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btncheckAll)
-                    .addComponent(btnuncheckAll)
-                    .addComponent(btndeleteCheckedItems)
-                    .addComponent(jButton1))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -178,12 +245,35 @@ private void setCheckedAll(boolean b) {
         this.deleteCheckedItems();
     }//GEN-LAST:event_btndeleteCheckedItemsActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Products newSanPham = new Products();
+
+
+int newId = dao.insertAndReturnId(newSanPham);
+newSanPham.setProductId(newId);
+
+
+// Mở dialog
+ProductsManagerJDialog dialog = new ProductsManagerJDialog(owner, true);
+dialog.setSanPhamId(newId);
+dialog.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            this.edit();
+        } 
+    }//GEN-LAST:event_tblSanPhamMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncheckAll;
     private javax.swing.JButton btndeleteCheckedItems;
     private javax.swing.JButton btnuncheckAll;
     private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblSanPham;
     // End of variables declaration//GEN-END:variables
@@ -197,20 +287,23 @@ private void setCheckedAll(boolean b) {
 public void fillToTable() {
     try {
         // Lấy danh sách sản phẩm từ CSDL
-        SanPhamDAO dao = new SanPhamDAOImpl();
-        List<SanPham> list = dao.findAll();
+        ProductsDAO dao = new ProductsDAOImpl();
+        List<Products> list = dao.findAll();
 
         // Xóa dữ liệu cũ trên bảng
         DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
         model.setRowCount(0);
 
         // Thêm dữ liệu mới
-        for (SanPham sp : list) {
+        for (Products sp : list) {
             Object[] row = {
-                sp.getSanPhamId(),
-                sp.getTenSanPham(),
-                sp.getMoTa(),
-                sp.getGiaTien()
+                sp.getProductId(),
+                sp.getProductName(),
+                sp.getDescription(),
+                sp.getUnitPrice(),
+                sp.getTarget(),
+                sp.getTargetSalary(),
+                sp.getQuantity()
             };
             model.addRow(row);
         }
@@ -234,7 +327,7 @@ public void fillToTable() {
     public void deleteCheckedItems() {
         DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
-            Boolean checked = (Boolean) model.getValueAt(i, 4);
+            Boolean checked = (Boolean) model.getValueAt(i, 7);
             if (checked != null && checked) {
                 Integer id = (Integer) model.getValueAt(i, 0);
                 dao.deleteById(id);
@@ -245,6 +338,29 @@ public void fillToTable() {
 
     @Override
     public void edit() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int selectedRow = tblSanPham.getSelectedRow();
+    if (selectedRow < 0) {
+        JOptionPane.showMessageDialog(null, "Vui lòng chọn một đơn hàng để chỉnh sửa.");
+        return;
+    }
+
+    // Lấy ID đơn hàng từ bảng (giả sử ID là kiểu Integer trong CSDL)
+    Object value = tblSanPham.getValueAt(selectedRow, 0);
+    Integer donHangId = value instanceof Integer ? (Integer) value : Integer.parseInt(value.toString());
+
+    // Tìm đơn hàng từ database
+    Products sp = dao.findById(donHangId);
+    if (sp == null) {
+        JOptionPane.showMessageDialog(null, "Không tìm thấy thông tin đơn hàng!");
+        return;
+    }
+
+    // Mở JDialog và đổ dữ liệu vào
+    ProductsManagerJDialog dialog = new ProductsManagerJDialog(null, true);
+    dialog.setForm(sp); // Đảm bảo bạn đã tạo đúng setForm(DonHang dh) trong JDialog
+    dialog.setVisible(true);
+
+    // Sau khi đóng dialog có thể cập nhật lại bảng nếu có thay đổi
+    fillToTable();
     }
 }

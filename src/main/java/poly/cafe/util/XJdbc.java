@@ -22,7 +22,7 @@ public class XJdbc {
      */
     public static Connection openConnection() {
         var driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        var dburl = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=DA1;encrypt=false;";
+        var dburl = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=DUAN1ENG;encrypt=false;";
         var username = "sa";
         var password = "12345678";
         try {
@@ -162,6 +162,23 @@ public class XJdbc {
         List<T> list = getBeanList(type, sql, args);
         return list.isEmpty() ? null : list.get(0);
     }
+    public static ResultSet executeUpdateAndReturnGeneratedKeys(String sql, Object... args) {
+    try {
+        var conn = XJdbc.openConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        for (int i = 0; i < args.length; i++) {
+            stmt.setObject(i + 1, args[i]);
+        }
+        
+        stmt.executeUpdate();
+        return stmt.getGeneratedKeys();
+    } catch (Exception e) {
+        e.printStackTrace();
+        throw new RuntimeException(e);
+    }
+}
+
     public static void main(String[] args) {
         demo1();
         demo2();

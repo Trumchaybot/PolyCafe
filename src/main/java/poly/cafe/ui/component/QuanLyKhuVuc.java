@@ -10,21 +10,24 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.JButton;
-import poly.cafe.dao.ChiTietKhuVucDAO;
-import poly.cafe.dao.KhuVucDAO;
-import poly.cafe.dao.impl.ChiTietKhuVucDAOImpl;
-import poly.cafe.dao.impl.KhuVucDAOImpl;
-import poly.cafe.entity.ChiTietKhuVuc;
-import poly.cafe.entity.KhuVuc;
-import poly.cafe.ui.manager.ChiTietKhuVucJDialog;
+import javax.swing.JOptionPane;
+import poly.cafe.dao.impl.AreaDetailsDAOImpl;
+import poly.cafe.dao.impl.AreasDAOImpl;
+import poly.cafe.entity.AreaDetails;
+import poly.cafe.entity.Areas;
+import poly.cafe.ui.manager.AreaDetailsJDialog;
 import poly.cafe.ui.component.controller.QuanLyKhuVucController;
+import poly.cafe.ui.manager.AreasManagerJDialog;
+import poly.cafe.dao.AreaDetailsDAO;
+import poly.cafe.dao.AreasDAO;
 
 /**
  *
  * @author admin
  */
 public class QuanLyKhuVuc extends javax.swing.JPanel implements QuanLyKhuVucController{
-ChiTietKhuVucDAO dao = new ChiTietKhuVucDAOImpl();
+AreaDetailsDAO dao = new AreaDetailsDAOImpl();
+AreasDAO daokv = new AreasDAOImpl();
 private Frame owner;
     /**
      * Creates new form QLKV
@@ -36,28 +39,76 @@ public QuanLyKhuVuc() {
     this.owner = owner;
     initComponents();
     open();
+    this.Front();
 }
 private void loadKhuVuc() {
-    KhuVucDAO dao = new KhuVucDAOImpl();
-    List<KhuVuc> khuVucs = dao.findAll();
+    AreasDAO dao = new AreasDAOImpl();
+    List<Areas> khuVucs = dao.findAll();
     pnlKhuVuc.removeAll();
     khuVucs.forEach(kv -> pnlKhuVuc.add(this.createButton(kv)));
     pnlKhuVuc.revalidate();
     pnlKhuVuc.repaint();
 }
 
-private JButton createButton(KhuVuc khuVuc) {
+private JButton createButton(Areas khuVuc) {
     JButton btn = new JButton();
-    btn.setText(khuVuc.getTenKhuVuc());
+    btn.setText(khuVuc.getAreaName());
     btn.setPreferredSize(new Dimension(120, 80));
-    btn.setBackground(Color.LIGHT_GRAY);
-    btn.setActionCommand(String.valueOf(khuVuc.getKhuVucId()));
+    btn.setActionCommand(String.valueOf(khuVuc.getAreaId()));
+    btn.setFocusPainted(false);
+
+    // ✅ Đặt màu mặc định theo trạng thái
+    Color baseColor;
+    if ("Hoạt động".equalsIgnoreCase(khuVuc.getStatus())) {
+        baseColor = Color.GREEN;
+        btn.setForeground(Color.WHITE);
+    } else if ("Bảo trì".equalsIgnoreCase(khuVuc.getStatus())) {
+        baseColor = Color.ORANGE;
+        btn.setForeground(Color.BLACK);
+    } else {
+        baseColor = Color.LIGHT_GRAY;
+    }
+    btn.setBackground(baseColor);
+    // Xử lý click
     btn.addActionListener((ActionEvent e) -> {
         int khuVucId = Integer.parseInt(e.getActionCommand());
-        // ✅ Gọi showChiTietKhuVucDialog
-        this.showChiTietKhuVucDialog(khuVucId);
+
+        if ("Bảo trì".equalsIgnoreCase(khuVuc.getStatus())) {
+            int confirm = JOptionPane.showConfirmDialog(
+                    btn,
+                    "Khu vực này đang bảo trì.\nBạn có chắc chắn muốn đổi qua trạng thái 'hoạt động' để mở không?",
+                    "Xác nhận",
+                    JOptionPane.YES_NO_OPTION
+            );
+            if (confirm == JOptionPane.YES_OPTION) {
+                //  Đổi trạng thái trong DB hoặc entity
+                khuVuc.setStatus("Hoạt động");
+
+                //  Cập nhật lại màu nút
+                btn.setBackground(Color.GREEN);
+                btn.setForeground(Color.WHITE);
+
+                // có thể gọi DAO update trạng thái trong DB
+                 daokv.update(khuVuc);
+                
+                //  Hiển thị chi tiết khu vực
+                showChiTietKhuVucDialog(khuVucId);
+            }
+        } else {
+            // Trường hợp khu vực hoạt động hoặc khác
+            showChiTietKhuVucDialog(khuVucId);
+        }
     });
+
     return btn;
+}
+
+
+
+public void Front(){
+    jPanel1.setBackground(new Color(255,255,200));
+    pnlKhuVuc.setBackground(new Color(255,255,200));
+    jButton1.setBackground(new Color(255,255,230));
 }
 
 
@@ -70,36 +121,70 @@ private JButton createButton(KhuVuc khuVuc) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         pnlKhuVuc = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
         pnlKhuVuc.setLayout(new java.awt.GridLayout(0, 6, 5, 5));
 
         jButton1.setText("Quản lý khu vực");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(905, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(27, 27, 27))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pnlKhuVuc, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(613, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pnlKhuVuc, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(34, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlKhuVuc, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(30, 30, 30))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlKhuVuc, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        AreasManagerJDialog dialog = new AreasManagerJDialog(owner, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pnlKhuVuc;
     // End of variables declaration//GEN-END:variables
 
@@ -109,13 +194,13 @@ private JButton createButton(KhuVuc khuVuc) {
     }
 @Override
 public void showChiTietKhuVucDialog(int khuVucId) {
-    ChiTietKhuVucDAO dao = new ChiTietKhuVucDAOImpl();
+    AreaDetailsDAO dao = new AreaDetailsDAOImpl();
     
     // Load danh sách chi tiết khu vực theo khuVucId
-    List<ChiTietKhuVuc> dsChiTiet = dao.findByKhuVucId(khuVucId);
+    List<AreaDetails> dsChiTiet = dao.findByKhuVucId(khuVucId);
     
     // Mở dialog quản lý chi tiết khu vực
-    ChiTietKhuVucJDialog dialog = new ChiTietKhuVucJDialog(owner, true);
+    AreaDetailsJDialog dialog = new AreaDetailsJDialog(owner, true);
     dialog.setTitle("Chi tiết khu vực: " + khuVucId);
 //    dialog.setKhuVucId(khuVucId);
 //    dialog.setChiTietList(dsChiTiet);

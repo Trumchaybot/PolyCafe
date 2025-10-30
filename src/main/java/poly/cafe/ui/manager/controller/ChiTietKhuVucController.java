@@ -4,7 +4,7 @@
  */
 package poly.cafe.ui.manager.controller;
 
-import poly.cafe.entity.ChiTietKhuVuc;
+import poly.cafe.entity.AreaDetails;
 
 /**
  *
@@ -16,6 +16,5 @@ public interface ChiTietKhuVucController{
     void checkAll(); // Tích chọn tất cả các hàng trên bảng
     void uncheckAll(); // Bỏ tích chọn tất cả các hàng trên bảng
     void deleteCheckedItems();
-    void loadByKhuVucId(int khuVucId);  // thêm riêng cho chức năng này
 }
 

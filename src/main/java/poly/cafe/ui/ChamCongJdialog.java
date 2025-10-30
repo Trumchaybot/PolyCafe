@@ -4,21 +4,22 @@
  */
 package poly.cafe.ui;
 
+import java.awt.Color;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import poly.cafe.dao.ChamCongDAO;
-import poly.cafe.dao.ThongTinNVDAO;
-import poly.cafe.dao.impl.ChamCongDAOImpl;
-import poly.cafe.dao.impl.ThongTinNVDAOImpl;
-import poly.cafe.entity.ChamCong;
-import poly.cafe.entity.User;
+import poly.cafe.dao.impl.AttendanceDAOImpl;
+import poly.cafe.dao.impl.EmployeeInfoDAOImpl;
+import poly.cafe.entity.Attendance;
+import poly.cafe.entity.EmployeeInfo;
 import poly.cafe.ui.Controller.ChamCongController;
 import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
+import poly.cafe.dao.AttendanceDAO;
+import poly.cafe.dao.EmployeeInfoDAO;
 
 /**
  *
@@ -26,7 +27,7 @@ import poly.cafe.util.XDialog;
  */
 public class ChamCongJdialog extends javax.swing.JFrame implements ChamCongController {
 
-    private ThongTinNVDAO thongTinDao = new ThongTinNVDAOImpl();
+    private EmployeeInfoDAO thongTinDao = new EmployeeInfoDAOImpl();
 
     /**
      * Creates new form ChamCongJdialog
@@ -57,6 +58,7 @@ public class ChamCongJdialog extends javax.swing.JFrame implements ChamCongContr
         btnVaoCa = new javax.swing.JButton();
         btnRaCa = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        lblNofi = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -65,15 +67,15 @@ public class ChamCongJdialog extends javax.swing.JFrame implements ChamCongContr
             }
         });
 
-        jLabel1.setText("UserName");
+        jLabel1.setText("UserName:");
 
-        jLabel2.setText("Họ tên");
+        jLabel2.setText("Họ tên:");
 
-        jLabel3.setText("Ngày làm việc");
+        jLabel3.setText("Ngày làm việc:");
 
-        jLabel4.setText("Giờ vào ca");
+        jLabel4.setText("Giờ vào ca:");
 
-        jLabel5.setText("Giờ ra ca");
+        jLabel5.setText("Giờ ra ca:");
 
         txtGioRa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,40 +102,49 @@ public class ChamCongJdialog extends javax.swing.JFrame implements ChamCongContr
         jLabel6.setName(""); // NOI18N
         jLabel6.setOpaque(true);
 
+        lblNofi.setText("Nofity");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(btnVaoCa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
-                .addComponent(btnRaCa)
-                .addGap(82, 82, 82))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(116, 116, 116)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(24, 24, 24)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6)
+                                    .addComponent(txtHoTen, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                    .addComponent(txtUserName)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(116, 116, 116)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(lblNofi)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel3)))
+                                .addGap(24, 24, 24)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNgayLam)
-                                    .addComponent(txtGioVao)
-                                    .addComponent(txtGioRa)))))
+                                    .addComponent(txtGioRa)
+                                    .addComponent(txtGioVao, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNgayLam, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))))
+                        .addGap(92, 92, 92))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6)
-                            .addComponent(txtHoTen, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                            .addComponent(txtUserName))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(49, 49, 49)
+                        .addComponent(btnVaoCa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
+                        .addComponent(btnRaCa)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,11 +171,13 @@ public class ChamCongJdialog extends javax.swing.JFrame implements ChamCongContr
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtGioRa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblNofi)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVaoCa)
                     .addComponent(btnRaCa))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -233,6 +246,7 @@ public class ChamCongJdialog extends javax.swing.JFrame implements ChamCongContr
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblNofi;
     private javax.swing.JTextField txtGioRa;
     private javax.swing.JTextField txtGioVao;
     private javax.swing.JTextField txtHoTen;
@@ -246,78 +260,87 @@ public class ChamCongJdialog extends javax.swing.JFrame implements ChamCongContr
     }
 
     @Override
-    public void fill(ChamCong chamCong) {
+    public void fill(Attendance chamCong) {
 
     }
 
     @Override
-    public void open() {
-        User currentUser = XAuth.user;
-
-        txtUserName.setText(currentUser.getUserName());
-        txtUserName.setEditable(false);
-
-        var nv = thongTinDao.findByUserName(currentUser.getUserName());
-        txtHoTen.setText(nv != null ? nv.getHoTen() : "");
-        txtHoTen.setEditable(false);
-
-        txtNgayLam.setText(LocalDate.now().toString());
-        txtNgayLam.setEditable(false);
-
-        txtGioVao.setText("");
-        txtGioRa.setText("");
-
-        // 👉 Tự động fill ca làm gần nhất
-        ChamCongDAO dao = new ChamCongDAOImpl();
-        ChamCong chamCong = dao.findByUserAndDate(currentUser.getUserName(), LocalDate.now());
-        if (chamCong != null) {
-            txtGioVao.setText(chamCong.getGioVaoCa() != null ? chamCong.getGioVaoCa().toString() : "");
-            txtGioRa.setText(chamCong.getGioRaCa() != null ? chamCong.getGioRaCa().toString() : "");
-        }
+public void open() {
+    EmployeeInfo currentUser = XAuth.getUser();
+    if (currentUser == null) {
+        lblNofi.setForeground(Color.RED);
+        lblNofi.setText("Không có người dùng đăng nhập!");
+        return;
     }
 
-    @Override
-public void vaoCa() {
-    try {
-        LocalTime now = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        txtGioVao.setText(now.format(formatter));
+    txtUserName.setText(currentUser.getUserName());
+    txtUserName.setEditable(false);
 
-        String userName = txtUserName.getText();
-        LocalDate ngayLam = LocalDate.parse(txtNgayLam.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    EmployeeInfo nv = thongTinDao.findByUserName(currentUser.getUserName());
+    if (nv != null) {
+        txtHoTen.setText(nv.getFullName());
+    } else {
+        txtHoTen.setText("Không tìm thấy");
+    }
+    txtHoTen.setEditable(false);
 
-        ChamCongDAO dao = new ChamCongDAOImpl();
-        ChamCong chamCong = dao.findByUserAndDate(userName, ngayLam);
+    LocalDate today = LocalDate.now();
+    txtNgayLam.setText(today.toString());
+    txtNgayLam.setEditable(false);
 
-        if (chamCong != null && chamCong.getGioVaoCa() != null && chamCong.getGioRaCa() != null) {
-            // Đã có giờ vào & giờ ra → tạo ca mới
-            chamCong = null;
+    txtGioVao.setText("");
+    txtGioRa.setText("");
+
+    AttendanceDAO dao = new AttendanceDAOImpl();
+    Attendance chamCong = dao.findByUserAndDate(currentUser.getUserName(), today);
+    if (chamCong != null) {
+        if (chamCong.getCheckinTime()!= null) {
+            txtGioVao.setText(chamCong.getCheckinTime().toString());
         }
-
-        if (chamCong == null) {
-            // Tạo ca mới
-            ChamCong newCa = new ChamCong();
-            newCa.setUserName(userName);
-            newCa.setNgayLamViec(ngayLam);
-            newCa.setGioVaoCa(now);
-            newCa.setGioRaCa(null);
-            dao.create(newCa);
-
-            // ✅ Reset 2 ô (sạch sẽ)
-            txtGioVao.setText("");
-            txtGioRa.setText("");
-
-            XDialog.alert("Đã tạo ca mới và lưu giờ vào ca!");
-        } else {
-            chamCong.setGioVaoCa(now);
-            dao.update(chamCong);
-            XDialog.alert("Đã cập nhật giờ vào ca!");
+        if (chamCong.getCheckoutTime()!= null) {
+            txtGioRa.setText(chamCong.getCheckoutTime().toString());
         }
-    } catch (Exception ex) {
-        ex.printStackTrace();
-        XDialog.alert("Lỗi khi lưu giờ vào ca!");
     }
 }
+
+    public void vaoCa() {
+    try {
+        LocalTime now = LocalTime.now();
+        String userName = txtUserName.getText();
+        LocalDate ngayLam = LocalDate.parse(txtNgayLam.getText());
+
+        AttendanceDAO dao = new AttendanceDAOImpl();
+        Attendance chamCong = dao.findByUserAndDate(userName, ngayLam);
+
+        // Nếu chưa có bản ghi hoặc bản ghi đã có giờ ra => tạo mới
+        if (chamCong == null || chamCong.getCheckoutTime()!= null) {
+            chamCong = new Attendance();
+            chamCong.setUserName(userName);
+            chamCong.setWorkDate(ngayLam);
+            chamCong.setCheckinTime(now);
+            chamCong.setCheckoutTime(null);
+            dao.create(chamCong);
+            lblNofi.setForeground(new Color(0, 128, 0));
+            lblNofi.setText("Đã tạo ca làm và lưu giờ vào ca!");
+            
+        } else {
+            // Nếu có bản ghi nhưng chưa có giờ ra => cập nhật giờ vào
+            chamCong.setCheckinTime(now);
+            dao.update(chamCong);
+            lblNofi.setForeground(new Color(0, 128, 0));
+            lblNofi.setText("Đã cập nhật giờ vào ca!");
+        }
+
+        txtGioVao.setText(now.format(DateTimeFormatter.ofPattern("HH:mm")));
+        txtGioRa.setText("");
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        lblNofi.setForeground(Color.RED);
+        lblNofi.setText("Lỗi khi lưu giờ vào ca!");
+    }
+}
+
+
 
 
     @Override
@@ -330,20 +353,24 @@ public void vaoCa() {
             String userName = txtUserName.getText();
             LocalDate ngayLam = LocalDate.parse(txtNgayLam.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            ChamCongDAO dao = new ChamCongDAOImpl();
-            ChamCong chamCong = dao.findByUserAndDate(userName, ngayLam);
+            AttendanceDAO dao = new AttendanceDAOImpl();
+            Attendance chamCong = dao.findByUserAndDate(userName, ngayLam);
 
             if (chamCong == null) {
                 XDialog.alert("Không tìm thấy ca làm hôm nay!");
+                lblNofi.setForeground(Color.RED);
+                lblNofi.setText("Không tìm thấy ca làm hôm nay!");
                 return;
             }
 
-            chamCong.setGioRaCa(now);
+            chamCong.setCheckoutTime(now);
             dao.update(chamCong);
-            XDialog.alert("Đã lưu giờ ra ca!");
+            lblNofi.setForeground(new Color(0, 128, 0));
+            lblNofi.setText("Đã lưu giờ ra ca!");
         } catch (Exception ex) {
             ex.printStackTrace();
-            XDialog.alert("Lỗi khi lưu giờ ra ca!");
+            lblNofi.setForeground(Color.RED);
+            lblNofi.setText("Lỗi khi lưu giờ ra ca!");
         }
     }
 

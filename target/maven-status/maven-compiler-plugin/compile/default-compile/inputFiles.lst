@@ -1,96 +1,160 @@
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\ChamCongDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\ChiTietDonHangDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\ChiTietKhuVucDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\CrudDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\DonHangDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\ChamCongDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\ChiTietDonHangDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\ChiTietKhuVucDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\DonHangDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\KhuVucDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\LuongDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\NguyenVatLieuDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\NhapKhoDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\RoleDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\SanLuongDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\SanPhamDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\ThongTinNVDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\TongChiDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\TongThuDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\TuyenDungDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\UngTuyenDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\UserDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\impl\XuatKhoDAOImpl.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\KhuVucDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\LuongDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\NguyenVatLieuDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\NhapKhoDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\RoleDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\SanLuongDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\SanPhamDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\ThongTinNVDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\TongChiDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\TongThuDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\TuyenDungDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\UngTuyenDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\UserDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\dao\XuatKhoDAO.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\ChamCong.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\ChiTietDonHang.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\ChiTietKhuVuc.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\DonHang.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\KhuVuc.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\Luong.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\NguyenVatLieu.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\NhapKho.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\Role.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\SanLuong.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\SanPham.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\ThongTinNV.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\TongChi.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\TongThu.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\TuyenDung.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\UngTuyen.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\User.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\entity\XuatKho.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\AdminJdialog.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\ChamCongJdialog.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyChamLuongController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyDonHangController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyKhuVucController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyNhanVienController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLySanPhamController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyTaiKhoanController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyTuyenDungController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyVatLieuController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\controller\ThongKeDoanhThuController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\DashBoard.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\QuanlyChamLuong.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyDonHang.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyKhuVuc.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyNhanVien.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyNhapXuat.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLySanPham.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyTaiKhoan.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyTuyenDung.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyVatLieu.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\component\ThongKeDoanhThu.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\Controller\ChamCongController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\Controller\LoginController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\Controller\UserController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\LoginJDialog.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\manager\ChiTietKhuVucJDialog.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\manager\controller\ChiTietKhuVucController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\manager\controller\CrudController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\manager\controller\SanPhamManagerController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\manager\SanPhamManagerJdialog.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\WelcomeController.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\ui\WelcomeJDialog.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\util\TimeRange.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\util\XAuth.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\util\XDate.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\util\XDialog.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\util\XIcon.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\util\XJdbc.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\util\XQuery.java
-D:\java1\PolyCafe\src\main\java\poly\cafe\util\XStr.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\ApplicationsDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\AreaDetailsDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\AreasDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\AttendanceDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\CrudDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\CustomersDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\EmployeeInfoDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\ExportDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\ExportDetailsDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\ApplicationsDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\AreaDetailsDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\AreasDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\AttendanceDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\CustomersDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\EmployeeInfoDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\ExportDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\ExportDetailsDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\ImportDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\ImportDetailsDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\MaterialsDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\OrderDetailsDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\OrdersDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\OTPDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\ProductDetailsDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\ProductionStagesDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\ProductivityDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\ProductsDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\RecruitmentDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\RoleDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\SalaryDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\StatisticalDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\SuppliersDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\TotalExpensesDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\impl\TotalRevenueDAOImpl.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\ImportDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\ImportDetailsDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\MaterialsDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\OrderDetailsDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\OrdersDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\OTPDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\ProductDetailsDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\ProductionStagesDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\ProductivityDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\ProductsDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\RecruitmentDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\RoleDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\SalaryDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\StatisticalDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\SuppliersDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\TotalExpensesDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\dao\TotalRevenueDAO.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Applications.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\AreaDetails.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Areas.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Attendance.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Customers.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\EmployeeInfo.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Export.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\ExportDetails.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Import.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\ImportDetails.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Materials.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\OrderDetails.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Orders.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\OTP.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\ProductDetails.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\ProductionStages.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Productivity.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Products.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Recruitment.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Role.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Salary.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Statistical.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\Suppliers.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\TotalExpenses.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\entity\TotalRevenue.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\AdminJdialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\ChamCongJdialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\AreaManager.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyChamLuongController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyDonHangController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyKhuVucController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyNhanVienController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanlyNhapXuatController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLySanPhamController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyTuyenDungController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\controller\QuanLyVatLieuController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\controller\ThongKeDoanhThuController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\DashBoard.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\EmployeeInfoManager.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\ImAndExManager.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\OrderManager.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\ProductManager.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\QuanlyChamLuong.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyDonHang.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyKhuVuc.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyNhanVien.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyNhapXuat.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLySanPham.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyTuyenDung.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\QuanLyVatLieu.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\component\ThongKeDoanhThu.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\Controller\ChamCongController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\Controller\LoginController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\Controller\UserController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\Controller\WelcomeController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\ForgetPassWord.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\LoginJDialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\AreaDetailsJDialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\AreasManagerJDialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\controller\ChiTietKhuVucController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\controller\CrudController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\controller\DonHangManagerController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\controller\SanPhamManagerController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\controller\ThongTinNVManagerController.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\DonHangManagerJDialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\ImAndExManagerDialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\KhoManagerJDialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\ProductsManagerJDialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\RoleManagerJdialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\manager\ThongTinNVManagerJDialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\pnlMenu.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\test.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\test2.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\component\Card.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\component\Menu.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\event\EventMenuSelected.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\form\AreaManager.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\form\EmployeeInfoManager.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\form\Form_1.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\form\Form_2.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\form\Form_3.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\form\Form_Home.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\form\ImAndExManager.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\form\OrderManager.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\form\ProductManager.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\main\Main.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\model\Model_Card.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\model\Model_Menu.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\model\StatusType.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\swing\CellStatus.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\swing\ListMenu.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\swing\MenuItem.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\swing\ModernScrollBarUI.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\swing\PanelBorder.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\swing\ScrollBar.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\swing\SearchText.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\swing\Table.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\swing\TableHeader.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\testui\swing\TableStatus.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\ui\WelcomeJDialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\util\TimeRange.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\util\XAuth.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\util\XDate.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\util\XDialog.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\util\XIcon.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\util\XJdbc.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\util\XMail.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\util\XQuery.java
+D:\Users\admin\3D Objects\Máy tính\PolyCafe\src\main\java\poly\cafe\util\XStr.java

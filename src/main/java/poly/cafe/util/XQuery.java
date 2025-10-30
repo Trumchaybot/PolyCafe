@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import poly.cafe.entity.User;
+import poly.cafe.entity.EmployeeInfo;
 
 /**
  * Lớp tiện ích hỗ trợ truy vấn và chuyển đổi sang đối tượng
@@ -90,11 +90,11 @@ public class XQuery {
 
     private static void demo1() {
         String sql = "SELECT * FROM Users WHERE Username=? AND Password=?";
-        User user = XQuery.getSingleBean(User.class, sql, "NghiemN", "123456");
+        EmployeeInfo user = XQuery.getSingleBean(EmployeeInfo.class, sql, "NghiemN", "123456");
     }
 
     private static void demo2() {
         String sql = "SELECT * FROM Users WHERE Fullname LIKE ?";
-        List<User> list = XQuery.getBeanList(User.class, sql, "%Nguyễn %");
+        List<EmployeeInfo> list = XQuery.getBeanList(EmployeeInfo.class, sql, "%Nguyễn %");
     }
 }

@@ -80,16 +80,11 @@ public class EmployeeInfoManager extends javax.swing.JPanel {
 
         rdoNu3.setText("Nữ");
 
-        txtCCCD3.setText("jTextField3");
         txtCCCD3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCCCD3txtCCCDActionPerformed(evt);
             }
         });
-
-        txtNgaySinh3.setText("jTextField4");
-
-        txtSDT3.setText("jTextField6");
 
         lblImage3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lblImage3.setText("Chọn hình ảnh");
@@ -499,55 +494,14 @@ public class EmployeeInfoManager extends javax.swing.JPanel {
     private javax.swing.JButton btncheckAll1;
     private javax.swing.JButton btndeleteCheckedItems1;
     private javax.swing.JButton btnuncheckAll1;
-    private javax.swing.JComboBox<String> cboRole;
-    private javax.swing.JComboBox<String> cboRole1;
     private javax.swing.JComboBox<String> cboRole3;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -558,62 +512,29 @@ public class EmployeeInfoManager extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel lblImage;
-    private javax.swing.JLabel lblImage1;
     private javax.swing.JLabel lblImage3;
-    private poly.cafe.ui.testui.swing.PanelBorder panelBorder1;
-    private poly.cafe.ui.testui.swing.PanelBorder panelBorder2;
     private poly.cafe.ui.testui.swing.PanelBorder panelBorder4;
     private poly.cafe.ui.testui.swing.PanelBorder panelBorder5;
-    private javax.swing.JRadioButton rdoNam;
-    private javax.swing.JRadioButton rdoNam1;
     private javax.swing.JRadioButton rdoNam3;
-    private javax.swing.JRadioButton rdoNu;
-    private javax.swing.JRadioButton rdoNu1;
     private javax.swing.JRadioButton rdoNu3;
-    private javax.swing.JRadioButton rdoOff;
-    private javax.swing.JRadioButton rdoOff1;
     private javax.swing.JRadioButton rdoOff3;
-    private javax.swing.JRadioButton rdoOnl;
-    private javax.swing.JRadioButton rdoOnl1;
     private javax.swing.JRadioButton rdoOnl3;
     private javax.swing.JScrollPane spTable1;
     private poly.cafe.ui.testui.swing.Table table1;
-    private javax.swing.JTextField txtCCCD;
-    private javax.swing.JTextField txtCCCD1;
     private javax.swing.JTextField txtCCCD3;
-    private javax.swing.JTextField txtDiaChi;
-    private javax.swing.JTextField txtDiaChi1;
     private javax.swing.JTextField txtDiaChi3;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEmail1;
     private javax.swing.JTextField txtEmail3;
-    private javax.swing.JTextField txtHoTen;
-    private javax.swing.JTextField txtHoTen1;
     private javax.swing.JTextField txtHoTen3;
-    private javax.swing.JTextField txtNgaySinh;
-    private javax.swing.JTextField txtNgaySinh1;
     private javax.swing.JTextField txtNgaySinh3;
-    private javax.swing.JTextField txtPassWord;
-    private javax.swing.JTextField txtPassWord1;
     private javax.swing.JTextField txtPassWord3;
-    private javax.swing.JTextField txtSDT;
-    private javax.swing.JTextField txtSDT1;
     private javax.swing.JTextField txtSDT3;
-    private javax.swing.JTextField txtUserName;
-    private javax.swing.JTextField txtUserName1;
     private javax.swing.JTextField txtUserName3;
     // End of variables declaration//GEN-END:variables
 }

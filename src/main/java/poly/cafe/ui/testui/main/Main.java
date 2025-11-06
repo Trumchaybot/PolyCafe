@@ -40,7 +40,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         System.out.println(getClass().getResource("/poly/cafe/ui/testui/icon/NL.png"));
-        //setBackground(new Color(0, 0, 0, 0));
+        //setBackground(new Color(1, 1, 1, 1));
         home = new Form_Home();
         form1 = new Form_1();
         form2 = new Form_2();
